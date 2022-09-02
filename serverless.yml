@@ -11,7 +11,7 @@ provider:
       Action:
         - dynamodb:*
       Resource:
-        - arn:aws:dynamodb:us-west-2:891804951846:table/ProductsTable2
+        - arn:aws:dynamodb:us-west-2:891804951846:table/ProductsTable
 
 functions:
   helloWorld:
@@ -62,10 +62,10 @@ plugins:
 
 resources:
   Resources:
-    ProductsTable2:
+    ProductsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ProductsTable2
+        TableName: ProductsTable
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: id

@@ -8,7 +8,7 @@ const headers = {
   "content-type": "application/json",
 };
 
-const tableName: string = "ProductsTable2";
+const tableName: string = "ProductsTable";
 
 export const helloWorld = async (evt: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   return {
