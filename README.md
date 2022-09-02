@@ -63,6 +63,8 @@ https://lc93fee9v2.execute-api.us-west-2.amazonaws.com/products/${id}
 Métodos:
 DELETE -> Elimina un producto por id.
 
+Output:
+
 > {
 > "code": "00",
 > "details": "Producto eliminado satisfactoriamente"
