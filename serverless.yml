@@ -1,0 +1,75 @@
+service: RetoTecnicoRimac
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: "20201221"
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource:
+        - arn:aws:dynamodb:us-west-2:891804951846:table/ProductsTable2
+
+functions:
+  helloWorld:
+    handler: src/handlers.helloWorld
+    events:
+      - httpApi:
+          path: /
+          method: get
+  saveProduct:
+    handler: src/handlers.saveProduct
+    events:
+      - httpApi:
+          path: /products
+          method: post
+  productList:
+    handler: src/handlers.productList
+    events:
+      - httpApi:
+          path: /products
+          method: get
+  findProduct:
+    handler: src/handlers.findProduct
+    events:
+      - httpApi:
+          path: /products/{id}
+          method: get
+  deleteProduct:
+    handler: src/handlers.deleteProduct
+    events:
+      - httpApi:
+          path: /products/{id}
+          method: delete
+  swPlanets:
+    handler: src/handlers.swPlanets
+    events:
+      - httpApi:
+          path: /sw/planets
+          method: get
+  swVehicles:
+    handler: src/handlers.swVehicles
+    events:
+      - httpApi:
+          path: /sw/vehicles
+          method: get
+
+plugins:
+  - serverless-plugin-typescript
+
+resources:
+  Resources:
+    ProductsTable2:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ProductsTable2
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
